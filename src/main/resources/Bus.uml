@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>kz.iitu.intercitybustransportation.model.Bus</OriginalElement>
+  <nodes>
+    <node x="213.19" y="483.0">kz.iitu.intercitybustransportation.model.Flight</node>
+    <node x="382.0" y="1049.0">kz.iitu.intercitybustransportation.model.Passenger</node>
+    <node x="561.69" y="494.0">kz.iitu.intercitybustransportation.model.User</node>
+    <node x="113.5" y="-15.0">kz.iitu.intercitybustransportation.model.Carrier</node>
+    <node x="98.0" y="223.0">kz.iitu.intercitybustransportation.model.Bus</node>
+    <node x="-57.00999999999999" y="765.0">kz.iitu.intercitybustransportation.model.Ticket</node>
+    <node x="413.0" y="-4.0">kz.iitu.intercitybustransportation.model.Stop</node>
+    <node x="510.99" y="787.0">kz.iitu.intercitybustransportation.model.Review</node>
+    <node x="421.0" y="234.0">kz.iitu.intercitybustransportation.model.Route</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="kz.iitu.intercitybustransportation.model.Review" target="kz.iitu.intercitybustransportation.model.Flight" relationship="TO_ONE">
+      <point x="0.0" y="-94.0" />
+      <point x="645.99" y="714.0" />
+      <point x="356.69" y="714.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Bus" target="kz.iitu.intercitybustransportation.model.Carrier" relationship="TO_ONE">
+      <point x="0.0" y="-105.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Passenger" target="kz.iitu.intercitybustransportation.model.User" relationship="TO_ONE">
+      <point x="0.0" y="-116.0" />
+      <point x="557.0" y="1023.0" />
+      <point x="797.0" y="1023.0" />
+      <point x="797.0" y="724.0" />
+      <point x="691.19" y="724.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Flight" target="kz.iitu.intercitybustransportation.model.Route" relationship="TO_ONE">
+      <point x="0.0" y="-105.0" />
+      <point x="356.69" y="458.0" />
+      <point x="571.5" y="458.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Review" target="kz.iitu.intercitybustransportation.model.User" relationship="TO_ONE">
+      <point x="0.0" y="-94.0" />
+      <point x="645.99" y="744.0" />
+      <point x="691.19" y="744.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Passenger" target="kz.iitu.intercitybustransportation.model.Ticket" relationship="TO_ONE">
+      <point x="-64.31" y="-116.0" />
+      <point x="492.69" y="881.0" />
+      <point x="179.5" y="-0.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Ticket" target="kz.iitu.intercitybustransportation.model.User" relationship="TO_ONE">
+      <point x="-0.0" y="116.0" />
+      <point x="122.49000000000001" y="1298.5" />
+      <point x="812.0" y="1298.5" />
+      <point x="120.80999999999995" y="94.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Ticket" target="kz.iitu.intercitybustransportation.model.Flight" relationship="TO_ONE">
+      <point x="172.0" y="-116.0" />
+      <point x="-62.19999999999999" y="105.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Flight" target="kz.iitu.intercitybustransportation.model.Bus" relationship="TO_ONE">
+      <point x="0.0" y="-105.0" />
+      <point x="356.69" y="458.0" />
+      <point x="249.5" y="458.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="kz.iitu.intercitybustransportation.model.Route" target="kz.iitu.intercitybustransportation.model.Stop" relationship="TO_MANY">
+      <point x="0.0" y="-94.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5271656534954408" showDependencies="true" x="313.5" y="520.8846846846847" />
+  <SelectedNodes>
+    <node>kz.iitu.intercitybustransportation.model.Ticket</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
