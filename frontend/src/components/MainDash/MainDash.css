@@ -1,0 +1,46 @@
+.MainDash{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height:  100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+.chart-container {
+    position: relative;
+    height: 20vh;
+    width: 40vw;
+}
+/* Style for scrollbar */
+.MainDash::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+/* Track styles */
+.MainDash::-webkit-scrollbar-track {
+    background: #ffcfcf;
+}
+
+/* Handle styles */
+.MainDash::-webkit-scrollbar-thumb {
+    background: #ffb491;
+}
+
+/* Handle on hover */
+.MainDash::-webkit-scrollbar-thumb:hover {
+    background: #ee9565;
+}
+@media screen and (max-width: 1200px) {
+    .MainDash{
+        justify-content:flex-start;
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px)
+{
+    .MainDash{
+        align-items: center;
+    }
+}
