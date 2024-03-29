@@ -17,7 +17,6 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-
     void signup(SignupDTO signupDTO);
 
     UserDTO createBusOperator(UserDTO userDto);

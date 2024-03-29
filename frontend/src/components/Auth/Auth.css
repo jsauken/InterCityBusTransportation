@@ -1,0 +1,40 @@
+/* Auth.css */
+.AuthContainer {
+    color: var(--darkBlue);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AuthForm {
+    background: var(--glass);
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: var(--boxShadow);
+    width: 20rem;
+}
+
+.AuthForm h2 {
+    margin-bottom: 1rem;
+}
+
+.AuthForm input {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.AuthForm button {
+    width: 100%;
+    padding: 0.5rem;
+    background: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.AuthForm button:hover {
+    background: var(--pink);
+}

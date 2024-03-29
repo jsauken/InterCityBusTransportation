@@ -11,11 +11,10 @@ import java.security.Key;
 import java.time.Instant;
 import java.time.Duration;
 import java.util.Date;
-
 import kz.iitu.intercitybustransportation.exceptions.NoAccessException;
-import kz.iitu.intercitybustransportation.model.User;
-import kz.iitu.intercitybustransportation.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
+
+
 
 public class JwtHelper {
 
