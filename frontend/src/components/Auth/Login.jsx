@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const history = useHistory();
+    const navigate = useNavigate(); // Use useNavigate for navigation
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,7 +15,7 @@ function Login() {
             // Store token in local storage upon successful login
             localStorage.setItem("token", response.data.token);
             // Redirect to dashboard or desired page upon successful login
-            history.push("/dashboard");
+            navigate("/dashboard"); // Use navigate instead of history.push
         } catch (error) {
             setError("Invalid email or password");
         }

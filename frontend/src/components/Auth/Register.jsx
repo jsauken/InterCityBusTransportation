@@ -1,5 +1,6 @@
+
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
@@ -7,14 +8,14 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const history = useHistory();
+    const navigate = useNavigate(); // Use useNavigate for navigation
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await axios.post("/api/auth/signup", { name, email, password });
             // Redirect to login page upon successful registration
-            history.push("/login");
+            navigate("/login"); // Use navigate instead of history.push
         } catch (error) {
             setError("Email is already registered");
         }

@@ -23,6 +23,4 @@ public class Stop {
     private LocalDateTime arrivalTime;
     private LocalDateTime  departureTime;
 
-
-
 }

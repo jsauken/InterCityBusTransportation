@@ -58,7 +58,7 @@ const Sidebar = () => {
                             <span>{item.heading}</span>
                         </div>
                     ))}
-                    <div className="menuItem" onClick={() => handleSidebarClick(SidebarData.length, "/logout")}>
+                    <div className="menuItem" onClick={() => handleSidebarClick(SidebarData.length, "/login")}>
                         <UilSignOutAlt />
                     </div>
                 </div>
