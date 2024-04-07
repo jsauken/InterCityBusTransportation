@@ -9,6 +9,9 @@ import Users from './components/User/User';
 import Analytics from './components/Analytics/Analytics';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8080';
 
 function App() {
     const location = useLocation();

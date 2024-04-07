@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 @RestController
 @RequestMapping(path = "/api/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;

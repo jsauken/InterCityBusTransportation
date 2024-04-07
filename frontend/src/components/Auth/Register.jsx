@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Auth.css";
 
 function Register() {
     const [name, setName] = useState("");
@@ -22,16 +23,18 @@ function Register() {
     };
 
     return (
-        <div>
+        <div className="AuthContainer">
+            <div className="AuthForm">
             <h2>Register</h2>
-            {error && <div>{error}</div>}
-            <form onSubmit={handleSubmit}>
+            {error && <div className="error">{error}</div>}
+                <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
                 <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 <button type="submit">Register</button>
             </form>
             <Link to="/login">Already have an account? Login here</Link>
+        </div>
         </div>
     );
 }

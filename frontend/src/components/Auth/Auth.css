@@ -1,7 +1,6 @@
 /* Auth.css */
 .AuthContainer {
     color: var(--darkBlue);
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,4 +36,19 @@
 
 .AuthForm button:hover {
     background: var(--pink);
+}
+
+.AuthForm Link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+}
+.AuthForm Link {
+    text-decoration: underline;
+}
+.error {
+    color: red;
+    margin-bottom: 10px;
 }

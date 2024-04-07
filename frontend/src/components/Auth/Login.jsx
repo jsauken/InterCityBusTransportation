@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Auth.css";
+
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -22,7 +24,8 @@ function Login() {
     };
 
     return (
-        <div>
+        <div className="AuthContainer">
+            <div className="AuthForm">
             <h2>Login</h2>
             {error && <div>{error}</div>}
             <form onSubmit={handleSubmit}>
@@ -31,6 +34,7 @@ function Login() {
                 <button type="submit">Login</button>
             </form>
             <Link to="/register">Don't have an account? Register here</Link>
+        </div>
         </div>
     );
 }
