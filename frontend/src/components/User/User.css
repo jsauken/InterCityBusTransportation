@@ -2,7 +2,14 @@
 .MuiTableRow-root.MuiTableRow-head > * {
     font-weight: bold !important;
 }
+.MuiTableRow-root:nth-child(odd) {
+    background-color: rgba(255, 165, 0, 0.3); /* Semi-transparent orange */
+}
 
+/* Even rows */
+.MuiTableRow-root:nth-child(even) {
+    background-color: rgba(255, 230, 180, 0.3); /* Semi-transparent light orange */
+}
 .Table td,
 th {
     border: none !important;
@@ -36,6 +43,11 @@ th {
         align-items: center;
     }
 }
+.TableContainerWrapper {
+    max-height: 600px;
+    max-width: 900px;
+    overflow-y: auto;
+}
 .popup {
     position: fixed;
     top: 50%;
@@ -49,6 +61,18 @@ th {
 
 .popup h2 {
     margin-top: 0;
+}
+.password-cell {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.phone-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .popup p {

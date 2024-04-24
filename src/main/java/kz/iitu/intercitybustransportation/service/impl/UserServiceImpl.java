@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
         roleSet.add(role);
 
 
-        // If email domain is admin.edu, add ADMIN role
+        // If email domain is admin.com, add ADMIN role
         if(user.getEmail().split("@")[1].equals("admin.com")){
             role = roleService.findByName("ADMIN");
             roleSet.add(role);

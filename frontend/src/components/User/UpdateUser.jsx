@@ -1,12 +1,20 @@
-// Update Popup
 import React, { useState } from "react";
 
 const UpdateUser = ({ userData, handleUpdate, handleClose }) => {
-    const [newUserData, setNewUserData] = useState(userData);
+    const [newUserData, setNewUserData] = useState({
+        username: userData.username || "",
+        email: userData.email || "",
+        password: userData.password || "",
+        phoneNumber: userData.phoneNumber || "",
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewUserData({ ...newUserData, [name]: value });
+    };
+
+    const handleSubmit = () => {
+        handleUpdate(newUserData);
     };
 
     return (
@@ -38,7 +46,7 @@ const UpdateUser = ({ userData, handleUpdate, handleClose }) => {
                     onChange={handleChange}
                 />
                 <div className="popup-buttons">
-                    <button onClick={() => handleUpdate(newUserData)}>Update</button>
+                    <button onClick={handleSubmit}>Update</button>
                     <button onClick={handleClose}>Cancel</button>
                 </div>
             </div>

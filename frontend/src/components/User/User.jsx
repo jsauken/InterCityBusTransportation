@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,55 +9,93 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import UpdateUser from "./UpdateUser";
+import DeleteUser from "./DeleteUser";
 import "./User.css";
 
-function createData(userID, username, password, email, phoneNumber) {
-    return { userID, username, password, email, phoneNumber };
-}
-
-
-const rows = [
-    createData("1000", "saukenj", "********", "saukenzh@gmail.com", "+7 775 091 5236"),
-    createData("1001", "mergembaeva", "********", "aidanamergembaeva@gmail.com", "+7 747 420 4253"),
-    createData("1002", "pazilkan20.03", "********", "pazilkhanaidana20.03@gmail.com", "+7 771 657 0399"),
-    createData("1003", "sayawka", "********", "jansaya11jan@gmail.com", "+7 707 789 5504"),
-    createData("1004", "Alisher_91", "********", "alisher.91@gmail.com", "+7 701 234 5678"),
-    createData("1005", "NurlanAbay", "********", "nurlanabay@example.kz", "+7 702 345 6789"),
-    createData("1006", "jamshut", "********", "murad.jamshut@example.kz", "+7 703 456 7890"),
-    createData("1007", "svetLana", "********", "sveta.uzbekova@example.kz", "+7 704 567 8901"),
-    createData("1008", "Rustem_Bekzhan", "********", "rustem.bekzhan@example.kz", "+7 705 678 9012"),
-    createData("1009", "Janaya_Joldybek", "********", "janaya.joldybek@example.kz", "+7 706 789 0123"),
-    createData("1010", "Aziz_Orlanov", "********", "aziz.orlanov@example.kz", "+7 707 890 1234"),
-    createData("1011", "Zhanar_Sabyrzhan", "********", "zhanar.sabyrzhan@example.kz", "+7 708 901 2345"),
-    createData("1012", "Igor_Yuryevich", "********", "igor.yuryevich@example.kz", "+7 709 012 3456"),
-    createData("1013", "Aigul_Toleubek", "********", "aigul.toleubek@example.kz", "+7 701 234 5678")
-];
-
-const handleClosePopup = (setPopup) => {
-    setPopup(null);
-};
-
 export default function BasicTable() {
-    const [editData, setEditData] = React.useState(null);
-    const [deleteConfirm, setDeleteConfirm] = React.useState(null);
+    const [users, setUsers] = useState([]);
+    const [editData, setEditData] = useState(null);
+    const [deleteConfirm, setDeleteConfirm] = useState(null);
+    const [accessToken, setAccessToken] = useState("");
 
-    const handleEdit = (row) => {
-        setEditData(row);
+    useEffect(() => {
+        // Retrieve token from local storage
+        const token = localStorage.getItem("token");
+        if (token) {
+            setAccessToken(token);
+            // Fetch users from the backend API
+            axios.get("/api/users", {
+                headers: {
+                    Authorization: `Bearer ${token}` // Include JWT token in the request headers
+                }
+            })
+                .then(response => {
+                    setUsers(response.data);
+                })
+                .catch(error => {
+                    console.error("Error fetching users:", error);
+                });
+        }
+    }, []);
+    const handleDelete = (user) => {
+        setDeleteConfirm(user);
     };
 
-    const handleDelete = (row) => {
-        setDeleteConfirm(row);
+    const handleEdit = (user) => {
+        setEditData(user);
     };
 
     const confirmDelete = () => {
-        console.log("Deleting user with ID:", deleteConfirm.userID);
+        //  DELETE request
+        axios.delete(`/api/users/${deleteConfirm.id}`)
+            .then(() => {
+                console.log("User deleted successfully");
+                // fetch users again to update the table
+                // Then close the confirmation popup
+                setDeleteConfirm(null);
+                // Fetch users again
+                fetchUsers();
+            })
+            .catch(error => {
+                console.error("Error deleting user:", error);
+            });
+    };
+
+    const handleUpdate = (updatedUserData) => {
+        //  PUT request
+        axios.put(`/api/users/${updatedUserData.id}`, updatedUserData)
+            .then(() => {
+                console.log("User updated successfully");
+                // After successful update, fetch users again to update the table
+                // Then close the update popup
+                setEditData(null);
+                // Fetch users again
+                fetchUsers();
+            })
+            .catch(error => {
+                console.error("Error updating user:", error);
+            });
+    };
+    const fetchUsers = () => {
+        axios.get("/api/users")
+            .then(response => {
+                setUsers(response.data);
+            })
+            .catch(error => {
+                console.error("Error fetching users:", error);
+            });
+    };
+
+    const handleClose = () => {
+        setEditData(null);
         setDeleteConfirm(null);
     };
 
-
     return (
         <div className="Table">
-            <h3>Recent Orders</h3>
+            <h3>Users</h3>
+            <div className="TableContainerWrapper">
             <TableContainer
                 component={Paper}
                 style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
@@ -74,25 +113,25 @@ export default function BasicTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody style={{ color: "white" }}>
-                        {rows.map((row) => (
+                        {users.map((user) => (
                             <TableRow
-                                key={row.userID}
+                                key={user.id}
                                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {row.userID}
+                                    {user.id}
                                 </TableCell>
                                 <TableCell component="th" scope="row">
-                                    {row.username}
+                                    {user.username}
                                 </TableCell>
-                                <TableCell align="left">{row.email}</TableCell>
-                                <TableCell align="left">{row.password}</TableCell>
-                                <TableCell align="left">{row.phoneNumber}</TableCell>
+                                <TableCell align="left">{user.email}</TableCell>
+                                <TableCell align="left"  className="password-cell">{user.password}</TableCell>
+                                <TableCell align="left"  className="phone-cell">{user.phoneNumber}</TableCell>
                                 <TableCell align="left">
-                                    <DeleteIcon onClick={() => handleDelete(row)} />
+                                    <DeleteIcon onClick={() => handleDelete(user)} />
                                 </TableCell>
                                 <TableCell align="left">
-                                    <EditIcon onClick={() => handleEdit(row)} />
+                                    <EditIcon onClick={() => handleEdit(user)} />
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -100,45 +139,12 @@ export default function BasicTable() {
                 </Table>
             </TableContainer>
             {editData && (
-                // Popup for editing user data
-                <div className="overlay" onClick={() => handleClosePopup(setEditData)}>
-                    <div className="popup">
-                        <h2>Edit User Data</h2>
-                        <p>User ID: {editData.userID}</p>
-                        <input
-                            type="text"
-                            placeholder="Enter new username"
-                            value={editData.username}
-                            onChange={(e) => setEditData({...editData, username: e.target.value})}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Enter new email"
-                            value={editData.email}
-                            onChange={(e) => setEditData({...editData, email: e.target.value})}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Enter new phone number"
-                            value={editData.phoneNumber}
-                            onChange={(e) => setEditData({...editData, phoneNumber: e.target.value})}
-                        />
-                        <button onClick={handleClosePopup}>Submit</button>
-                        <button onClick={handleClosePopup}>Cancel</button>
-                    </div>
-                </div>
+                <UpdateUser userData={editData} handleUpdate={handleUpdate} handleClose={handleClose} />
             )}
             {deleteConfirm && (
-                // Confirmation popup for deleting a user
-                <div className="overlay" onClick={() => handleClosePopup(setDeleteConfirm)} >
-                    <div className="popup">
-                        <h2>Confirm Deletion</h2>
-                        <p>Are you sure you want to delete user {deleteConfirm.username}?</p>
-                        <button onClick={confirmDelete}>Yes</button>
-                        <button onClick={() => setDeleteConfirm(null)}>No</button>
-                    </div>
-                </div>
+                <DeleteUser handleDelete={confirmDelete} handleClose={handleClose} />
             )}
+        </div>
         </div>
     );
 }
