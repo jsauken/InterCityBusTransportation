@@ -91,3 +91,55 @@ th {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
+.custom-table-container {
+    box-shadow: 0px 13px 20px 0px #80808029;
+}
+
+.custom-table-row {
+"&:last-child td, &:last-child th": {
+    border: 0;
+}
+}
+
+.add-user-button {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.add-user-button h4
+{
+    padding-right: 10px;
+}
+
+.add-user-icon {
+    cursor: pointer;
+    background-color: orange;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.add-user-icon:hover {
+    background-color: #ffa500;
+}
+
+.delete-icon,
+.edit-icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.delete-icon:hover,
+.edit-icon:hover {
+    background-color: #ffa500;
+}

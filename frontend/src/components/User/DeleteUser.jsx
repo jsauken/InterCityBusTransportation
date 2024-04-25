@@ -1,7 +1,8 @@
 import React from "react";
 
-const DeleteUser = ({ handleDelete, handleClose }) => {
-    // Initialize state values to empty strings to avoid warnings related to uncontrolled components
+const DeleteUser = ({ userId, handleDelete, handleClose }) => {
+
+
     const [confirmation, setConfirmation] = React.useState("");
 
     const handleChange = (e) => {
@@ -13,15 +14,15 @@ const DeleteUser = ({ handleDelete, handleClose }) => {
         <div className="popup">
             <div className="popup-inner">
                 <h2>Confirm Delete</h2>
-                <p>Are you sure you want to delete this item?</p>
+                <p>Are you sure you want to delete User with ID {userId}?</p>
                 <input
                     type="text"
-                    value={confirmation}
+                    value={userId} // Use the extracted user ID
                     onChange={handleChange}
                     style={{ display: "none" }}
                 />
                 <div className="popup-buttons">
-                    <button onClick={handleDelete}>Yes</button>
+                    <button onClick={() => handleDelete(userId)}>Yes</button>
                     <button onClick={handleClose}>No</button>
                 </div>
             </div>

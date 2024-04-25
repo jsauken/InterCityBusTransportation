@@ -132,7 +132,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername(userDto.getUsername());
         user.setEmail(email);
         user.setPassword(hashedPassword);
-
+        user.setPhoneNumber(userDto.getPhoneNumber());
         userRepository.save(user);
 
         User savedUser = userRepository.save(user);
@@ -144,6 +144,10 @@ public class UserServiceImpl implements UserService {
     public UserDTO updateUser(Long id, UserDTO userDto) {
         return userRepository.findById(id)
                 .map(user -> {
+                    user.setUsername(userDto.getUsername());
+                    user.setEmail(userDto.getEmail());
+                    user.setPhoneNumber(userDto.getPhoneNumber());
+                    user.setPassword(userDto.getPassword());
                     // Update the fields of the user as per your requirements
                     User updatedUser = userRepository.save(user);
                     return userMapper.toDto(updatedUser);

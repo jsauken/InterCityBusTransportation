@@ -1,59 +1,60 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 
-const UpdateUser = ({ userData, handleUpdate, handleClose }) => {
-    useEffect(() => {
-        console.log("Received user data in UpdateUser:", userData);
-    }, [userData]);
-    const [newUserData, setNewUserData] = useState({
-        id: userData.id || 0,
-        username: userData.username || "",
-        email: userData.email || "",
-        password: userData.password || "",
-        phoneNumber: userData.phoneNumber || "",
+const CreateUser = ({ handleCreate, handleClose }) => {
+    const [userData, setUserData] = useState({
+        username: "",
+        email: "",
+        password: "",
+        phoneNumber: "",
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewUserData(prevUserData => ({
+        setUserData(prevUserData => ({
             ...prevUserData,
             [name]: value
         }));
     };
+
     const handleSubmit = () => {
-        handleUpdate(newUserData);
+        handleCreate(userData);
         handleClose();
     };
 
     return (
         <div className="popup">
             <div className="popup-inner">
-                <h2>Update User Data</h2>
+                <h2>Create New User</h2>
                 <input
                     type="text"
                     name="username"
-                    value={newUserData.username}
+                    placeholder="Username"
+                    value={userData.username}
                     onChange={handleChange}
                 />
                 <input
                     type="text"
                     name="email"
-                    value={newUserData.email}
+                    placeholder="Email"
+                    value={userData.email}
                     onChange={handleChange}
                 />
                 <input
                     type="text"
                     name="password"
-                    value={newUserData.password}
+                    placeholder="Password"
+                    value={userData.password}
                     onChange={handleChange}
                 />
                 <input
                     type="text"
                     name="phoneNumber"
-                    value={newUserData.phoneNumber}
+                    placeholder="Phone Number"
+                    value={userData.phoneNumber}
                     onChange={handleChange}
                 />
                 <div className="popup-buttons">
-                    <button onClick={handleSubmit}>Update</button>
+                    <button onClick={handleSubmit}>Create</button>
                     <button onClick={handleClose}>Cancel</button>
                 </div>
             </div>
@@ -61,4 +62,4 @@ const UpdateUser = ({ userData, handleUpdate, handleClose }) => {
     );
 };
 
-export default UpdateUser;
+export default CreateUser;
